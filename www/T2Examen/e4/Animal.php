@@ -35,7 +35,7 @@ require_once 'Mascota.php';
 
 
     public function obtenerNombre(){
-        echo "Soy un perro y mi nombre es " . $this->nombre;
+      
 
     }
 
@@ -44,7 +44,7 @@ require_once 'Mascota.php';
 
   public function emitirSonido(){
 
-        echo "Guau guau";
+     
     }
     
 
