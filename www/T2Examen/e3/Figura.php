@@ -1,6 +1,5 @@
 <?php
 
-namespace e3;
 
 abstract class Figura
 {
@@ -12,7 +11,7 @@ abstract class Figura
     public function __construct($ancho, $alto)
     {
         $this->ancho = $ancho;
-        $this->alto = $$alto;
+        $this->alto = $alto;
         
     }
 
