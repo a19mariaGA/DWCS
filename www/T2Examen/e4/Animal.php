@@ -42,10 +42,7 @@ require_once 'Mascota.php';
 
  
 
-  public function emitirSonido(){
-
-     
-    }
+ abstract public function emitirSonido();
     
 
 }
