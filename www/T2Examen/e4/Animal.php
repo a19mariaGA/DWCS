@@ -2,7 +2,7 @@
 
 require_once 'Mascota.php';
 
-abstract class  Animal implements Mascota{
+ abstract class  Animal implements Mascota{
 
     protected $nombre;
     protected $edad;
@@ -40,6 +40,7 @@ abstract class  Animal implements Mascota{
     }
 
 
+ 
 
   public function emitirSonido(){
 
