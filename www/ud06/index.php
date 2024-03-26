@@ -15,7 +15,7 @@ Flight::register("db", "PDO", array("mysql:host=db;dbname=pruebas", "root", "tes
 //OBTENER DATOS CON GET
 
 //obtenemos clientes
-Flight::route('/clientes', function () {
+Flight::route('GET /clientes', function () {
     $setencia = Flight::db()->prepare("SELECT * from clientes");
      $setencia->execute();
      $datos=$setencia->fetchAll(PDO::FETCH_ASSOC);
@@ -24,7 +24,7 @@ Flight::route('/clientes', function () {
 
 
 //obtenemos hoteles
-Flight::route('/hoteles', function () {
+Flight::route('GET /hoteles', function () {
     $setencia = Flight::db()->prepare("SELECT * from hoteles");
      $setencia->execute();
      $datos=$setencia->fetchAll(PDO::FETCH_ASSOC);
@@ -33,7 +33,7 @@ Flight::route('/hoteles', function () {
 
 
 //obtenemos reservas
-Flight::route('/reservas', function () {
+Flight::route('GET /reservas', function () {
     $setencia = Flight::db()->prepare("SELECT * from reservas");
      $setencia->execute();
      $datos=$setencia->fetchAll(PDO::FETCH_ASSOC);
@@ -46,7 +46,7 @@ Flight::route('/reservas', function () {
 
 
 //obtenemos cliente por su id
-Flight::route('/cliente/@id', function($id) {
+Flight::route('GET /cliente/@id', function($id) {
     $setencia = Flight::db()->prepare("SELECT * FROM clientes WHERE id = ?");
     $setencia->execute([$id]);
     $datos = $setencia->fetchAll(PDO::FETCH_ASSOC);
@@ -55,7 +55,7 @@ Flight::route('/cliente/@id', function($id) {
 
 
 //obtenemos cliente por su id
-Flight::route('/hotel/@id', function($id) {
+Flight::route('GET /hotel/@id', function($id) {
     $setencia = Flight::db()->prepare("SELECT * FROM hoteles WHERE id = ?");
     $setencia->execute([$id]);
     $datos = $setencia->fetchAll(PDO::FETCH_ASSOC);
@@ -64,7 +64,7 @@ Flight::route('/hotel/@id', function($id) {
 
 
 //obtenemos cliente por su id
-Flight::route('/reserva/@id', function($id) {
+Flight::route('GET /reserva/@id', function($id) {
     $setencia = Flight::db()->prepare("SELECT * FROM reservas WHERE id = ?");
     $setencia->execute([$id]);
     $datos = $setencia->fetchAll(PDO::FETCH_ASSOC);
@@ -82,6 +82,8 @@ Flight::route('POST /clientes', function(){
     $edad = Flight::request()->data->edad;
     $email = Flight::request()->data->email;
     $telefono = Flight::request()->data->telefono;
+
+
 
     $sql = "INSERT INTO clientes (nombre, apellidos, edad, email, telefono) VALUES (:nombre, :apellidos, :edad, :email, :telefono)";
 
@@ -158,9 +160,10 @@ Flight::route('POST /reservas', function() {
 
 //BORRAR DATOS 
 
-Flight::route('DELETE /clientes', function () {
-
-    $id = Flight::request()->data->id;
+Flight::route('DELETE /clientes/@id', function ($id) {
+   
+   
+   // $id = Flight::request()->data->id;
    
     $sql ="DELETE FROM clientes WHERE id=?";
    
@@ -177,19 +180,19 @@ Flight::route('DELETE /clientes', function () {
 
 
 
-   Flight::route('DELETE /hoteles', function () {
+   Flight::route('DELETE /hoteles/@id', function ($id) {
 
-    $id = Flight::request()->data->id;
+   //$id = Flight::request()->data->id;
    
     $sql ="DELETE FROM hoteles WHERE id=?";
-    //Preparamos la sentencia sql
+   
     $sentencia = Flight::db()->prepare($sql);
-    //Pasamos el id 
+   
     $sentencia->bindParam(1, $id);
-    //Ejecutamos la sentencia INSERT
+   
     $sentencia->execute();
    
-    //Devolvememos en formato JSON parado una sentencia que nos indique que todo fue correctamente. 
+
     Flight::jsonp(["Hotel eliminado con id: $id"]);
    
    });
