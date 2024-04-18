@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Ofertas</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Lista de Ofertas de hoy</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Fruta</th>
+            <th>Precio</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for oferta in ofertas %}
+            <tr>
+                <td>{{ oferta.fruta }}</td>
+                <td>{{ oferta.precio }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+<div class="container">
+    <h1>Frutas de temporada</h1>
+
+    {# Recojo el valor de la variable comentario #}
+    <h2>{{ comentario }}</h2>
+
+    {# Recorro el array creado en la clase #}
+    <ul class="list-group">
+
+        {# Se recupera el valor de la clave #}
+        {% for fruta in frutas %}
+
+            <li class="list-group-item">{{ fruta }}</li>
+        {% endfor %}
+        
+    </ul>
+</div>
+

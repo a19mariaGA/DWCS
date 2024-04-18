@@ -1,0 +1,34 @@
+
+
+<h2> Puedes encontrar tiendas nuestras en varias ciudades</h2>
+
+
+
+<h2> {{coru}}</h2>
+
+    {# Recorro el array creado en la clase #}
+
+    <ul class="list-group">
+
+        {# Se recupera el valor de la clave #}
+        {% for coruña in tiedasCoruña %}
+
+            <li class="list-group-item">{{ coruña }}</li>
+        {% endfor %}
+        
+    </ul>
+
+<h2> {{santi}}</h2>
+
+
+    <ul class="list-group">
+
+        {# Se recupera el valor de la clave "tiendasSantiago" #}
+
+        
+        {% for santiago in tiendasSantiago %}
+
+            <li class="list-group-item">{{ santiago }}</li>
+        {% endfor %}
+        
+    </ul>
