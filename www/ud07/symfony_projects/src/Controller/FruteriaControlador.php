@@ -34,20 +34,20 @@ class FruteriaControlador extends AbstractController{
         public function listar(String $slug=null){
     
             $coruña = [
-                "Calle Real",
-                "Calle de la Estrella",
-                "Calle Juan Flórez"
+                "Calle Real  32",
+                "Calle de la Estrella  54",
+                "Calle Juan Flórez  22"
             ];
     
     
             $santiago = [
-                "Rúa do Franco",
-                "Rúa do Vilar",
-                "Rúa do Horreo"
+                "Rúa do Franco  43",
+                "Rúa do Vilar  12",
+                "Rúa do Horreo 12"
             ];
     
     
-            return $this ->render ("fruteria/listaTiendas.htlml.twig",[
+            return $this ->render ("fruteria/listaTiendas.html.twig",[
     
                 "coru" => "CORUÑA",
                 "tiedasCoruña" => $coruña,
@@ -65,7 +65,7 @@ class FruteriaControlador extends AbstractController{
         $ofertas = [
             ['fruta' => 'Manzana', 'precio' => '1.50€'],
             ['fruta' => 'Naranja', 'precio' => '1.20€'],
-            ['fruta' => 'Plátano', 'precio' => '0.80€'],
+            ['fruta' => 'Plátano', 'precio' => '2.80€'],
 
         ];
 
