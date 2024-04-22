@@ -8,26 +8,26 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
+
 class FruteriaControlador extends AbstractController{
 
   
+    #[Route('/')]
+    public function homepage()
+    {
 
-        #[Route('/')]
-        public function homepage()
-        {
+        $frutas = [
+            ["nombre" => "Fresa", "imagen" => "imagenes/fresas.jpg"],
+            ["nombre" => "Pera", "imagen" => "imagenes/peras.jpeg"],
+            ["nombre" => "Mango", "imagen" => "imagenes/mangos.jpeg"],
+            ["nombre" => "Limón", "imagen" => "imagenes/limones.jpeg"],
+        ];
 
-            $frutas = [
-                "Fresa",
-                "Pera",
-                "Mango",
-                "Limón"
-            ];
-
-            return $this->render("fruteria/homepage.html.twig", [
-                "comentario" => "Disfruta de nuestras frutas de temporada",
-                "frutas" => $frutas,
-            ]);
-        }
+        return $this->render("fruteria/homepage.html.twig", [
+            "comentario" => "Disfruta de nuestras frutas de temporada",
+            'frutas' => $frutas,
+        ]);
+    }
   
 
         #[Route('/listaTiendas/{slug}')]
@@ -70,6 +70,7 @@ class FruteriaControlador extends AbstractController{
         ];
 
         return $this->render("fruteria/listaOfertas.html.twig", [
+            'texto'=>"Lista de ofertas de hoy",
             'ofertas' => $ofertas,
         ]);
     }
