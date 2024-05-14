@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block title %} Tienda DWCS {% endblock %}
+
+{% block body %}
+
+{% for animal in animales %}
+    <p>Nombre: {{ animal.name }}</p>
+    <p>Especie: {{ animal.species }}</p>
+    <p>Comidas permitidas: {{ animal.foods.likes|join(', ') }}</p>
+    <p>Comidas no permitidas: {{ animal.foods.dislikes|join(', ') }}</p>
+  
+    <hr>
+{% endfor %}
+
+{% endblock %}
+
+
