@@ -15,10 +15,13 @@ Flight::route('GET /customers', function() {
     Flight::json($datos);
 });
 
-//obtenemos cliente por su id
-Flight::route('GET /customers/@id', function($id) {
+
+
+
+
+Flight::route('GET /customers/@id', function($customerNumber) {
     $setencia = Flight::db()->prepare("SELECT * FROM customers WHERE customerNumber = ?");
-    $setencia->execute([$id]);
+    $setencia->execute([$customerNumber]);
     $datos = $setencia->fetchAll(PDO::FETCH_ASSOC);
     Flight::json($datos);
 });
@@ -65,10 +68,58 @@ Flight::route('POST /customers', function(){
     $solicitud->execute();
 
 
-    Flight::jsonp(["Cliente agregado correctamente"]);
+    Flight::jsonp(["customers agregado correctamente"]);
 
 
 });
+
+
+
+
+Flight::route('DELETE /customers', function () {
+
+    $id = Flight::request()->data->id;
+   
+    $sql ="DELETE FROM customers WHERE customerNumber=?";
+    //Preparamos la sentencia sql
+    $sentencia = Flight::db()->prepare($sql);
+    //Pasamos el id 
+    $sentencia->bindParam(1, $id);
+    //Ejecutamos la sentencia INSERT
+    $sentencia->execute();
+   
+    //Devolvememos en formato JSON parado una sentencia que nos indique que todo fue correctamente. 
+    Flight::jsonp(["customers eliminado con customerNumber: $id"]);
+   
+   });
+    
+
+
+   Flight::route('PUT /customers', function () {
+
+    $customerNumber = Flight::request()->data->customerNumber;
+    $phone = Flight::request()->data->phone;
+    
+   
+   
+    $sql ="UPDATE customers set phone=?  WHERE customerNumber=?";
+    //Preparamos la sentencia sql
+    $sentencia = Flight::db()->prepare($sql);
+    //Preparamos los datos obtenidos de la sentencia 
+    $sentencia->bindParam(1, $phone);
+    $sentencia->bindParam(2, $customerNumber);
+    //Ejecutamos la sentencia INSERT
+    $sentencia->execute();
+   
+    //Devolvememos en formato JSON parado una sentencia que nos indique que todo fue correctamente. 
+    Flight::jsonp(["Cliente actualizado correctamente."]);
+   
+   });
+
+
+
+
+
 
 Flight::start();
 ?>
