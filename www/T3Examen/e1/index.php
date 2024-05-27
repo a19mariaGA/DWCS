@@ -15,15 +15,14 @@ Flight::route('GET /customers', function() {
     Flight::json($datos);
 });
 
-/*
 //obtenemos cliente por su id
-Flight::route('GET /customers/@id', function($customerNumber) {
+Flight::route('GET /customers/@id', function($id) {
     $setencia = Flight::db()->prepare("SELECT * FROM customers WHERE customerNumber = ?");
-    $setencia->execute([$customerNumber]);
+    $setencia->execute([$id]);
     $datos = $setencia->fetchAll(PDO::FETCH_ASSOC);
     Flight::json($datos);
 });
-*/
+
 
 Flight::route('POST /customers', function(){
 
