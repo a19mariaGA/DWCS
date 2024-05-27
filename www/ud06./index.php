@@ -46,8 +46,8 @@ Flight::route('GET /reservas', function () {
 
 
 //obtenemos cliente por su id
-Flight::route('GET /clientes/@id', function($id) {
-    $setencia = Flight::db()->prepare("SELECT * FROM clientes WHERE id = ?");
+Flight::route('GET /customers/@id', function($id) {
+    $setencia = Flight::db()->prepare("SELECT * FROM customerNumber WHERE id = ?");
     $setencia->execute([$id]);
     $datos = $setencia->fetchAll(PDO::FETCH_ASSOC);
     Flight::json($datos);
