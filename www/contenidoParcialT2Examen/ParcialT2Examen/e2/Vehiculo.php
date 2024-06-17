@@ -1,6 +1,6 @@
 <?php
 
-namespace e2;
+
 
 abstract class Vehiculo
 {
@@ -18,6 +18,8 @@ abstract class Vehiculo
     abstract protected function detener();
 
     abstract protected function estado();
+
+
 
     public function obtenerDescripcion()
     {

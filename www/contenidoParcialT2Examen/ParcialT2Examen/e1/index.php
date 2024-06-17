@@ -17,16 +17,46 @@
 
     <h2>Notas Guardadas</h2>
 
+ 
+
     <?php
     
-    /*Mostrar las notas guardadas utilizando el formato:
-        <div class="nota">
-            <h3>Titulo de la nota</h3>
-            <p>Contenido de la nota</p>
-        </div>
-        <div...>
-    */
-    ?>
+
+    $path = "./notas/";
+    $archivos = glob($path . "*");
+
+
+    //si dentro de la carpeta notas, exite una nota
+    if( !empty($archivos)){
+
+        
+        //recoremos esa carpeta
+        foreach ($archivos as $archivo ) {
+
+            //abrimos el archivo
+            $directorio_notas = fopen($archivo, "r") or die("Unable to open file!");
+    
+//mientras haya una linea la leemos 
+            while(!feof($directorio_notas)) {
+                echo fgets ($directorio_notas);
+               
+            }
+            fclose($directorio_notas);
+
+        }
+
+
+    }else{  
+        die("No files found in directory!");
+
+    }
+
+  ?>
     
 </body>
 </html>
+
+
+   
+
+

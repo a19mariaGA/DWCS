@@ -6,6 +6,7 @@ include "lib/utilidades.php";
 $conexion = get_conexion();
 seleccionar_bd_donacion($conexion);
 
+
 ?>
 
 <!doctype html>
@@ -26,11 +27,8 @@ seleccionar_bd_donacion($conexion);
     <br>
     <h1>Gestión donacion de Sangre</h1>
     <div>
-        <a class="btn btn-primary" href="dar_alta_donante.php" role="button">Alta donantes</a>
-        <a class="btn btn-primary" href="buscar_donantes.php" role="button">Buscar donantes</a>
-        <a class="btn btn-primary" href="listar_donantes.php" role="button">Listar donantes</a>
-        <a class="btn btn-primary" href="dar_alta_administrador.php" role="button">Nuevos administradores</a>
-        <a class="btn btn-primary" href="informenes.php" role="button">Informenes</a>
+        <a class="btn btn-primary" href="informe_donaciones_antiguas.php" role="button">Donaciones Antiguas</a>
+       
     </div>
 
     <footer>
@@ -40,5 +38,3 @@ seleccionar_bd_donacion($conexion);
     <?php cerrar_conexion($conexion);?>
 
 </body>
-
-</html>
