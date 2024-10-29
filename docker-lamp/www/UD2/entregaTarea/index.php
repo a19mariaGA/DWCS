@@ -8,43 +8,12 @@
 </head>
 <body>
 
-    <header header class="bg-primary text-white text-center py-3">
-
-    <?php
-
-    echo "<h1>UD2 - Maria Gonzalez Antelo</h1>";
-    echo "<h2>Esta es la tarea de la unidad 2</h2>";
-    ?>
-
-    </header>
+<?php include 'header.php'; ?>
 
     <div class="container-fluid">
         <div class="row">
             
-        
-            <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
-            <div class="position-sticky">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link" href="../index.php">
-                        Home
-                        </a>
-                    </li>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="">
-                        Mis Tareas
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="">
-                        Nueva tarea
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            </nav>
+        <?php include 'menu.php'; ?>
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -59,12 +28,9 @@
         </div>
     </div>
     
-    <footer class="bg-dark text-white text-center py-3">
 
-    <?php
-    echo "<p>&copy; " . date("Y") . " Maria Gonzalez Antelo. Todos los derechos reservados.</p>";
-    ?>
 
-    </footer>
+    <?php include 'footer.php'; ?>
+
 </body>
 </html>
