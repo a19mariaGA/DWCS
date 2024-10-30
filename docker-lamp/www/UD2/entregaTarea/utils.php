@@ -2,62 +2,74 @@
 
 include_once('nueva.php');
 
+// Variable global para almacenar las tareas
+global $tareas;
+$tareas = []; 
 
-// Inicializamos una variable global para almacenar las tareas
-$tareas = [];
-
-// Función para añadir una tarea
-
-function añadir($descripcion, $estado) {
+function devolver_tareas() {
     global $tareas;
 
-    // Filtrar la descripción y el estado
-    $descripcion = filtrar_contenido($descripcion);
-    $estado = filtrar_contenido($estado);
+    foreach ($tareas as $tarea) {
+        echo '<tr>';
+        echo '<td>' . htmlspecialchars($tarea['ID']) . '</td>';
+        echo '<td>' . htmlspecialchars($tarea['contenido']) . '</td>';
+        echo '<td>' . htmlspecialchars($tarea['estado']) . '</td>';
+        echo '</tr>';
+    }
+}
 
-    // Validar campos
-    if (!es_texto_valido($descripcion) || !es_texto_valido($estado)) {
-        return false; // Si no es válido, devuelve false
+
+//Filtrar el contenido de un campo para que no contenga caracteres especiales, espacios en blanco duplicados, etc. Recibe la variable y la devuelve filtrada.
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
+
+//Comprobar que un campo contiene información de texto válida, devolviendo true si se cumplen todos los requisitos o false si no es así. 
+//Deberá filtrar con la función anterior previamente antes de comprobar si es válido
+function texto_valido($ID, $contenido, $estado) {
+
+    $ID = test_input($ID);
+    $contenido = test_input($contenido);
+    $estado = test_input($estado);
+    
+    if (!is_numeric($ID)) {
+        echo "El id debe de ser númerico";
+        return false; 
     }
 
-    // Generar un ID único para la tarea
-    $id = count($tareas) + 1; // Simplemente incrementamos el contador de tareas para generar un ID
+    // Deberá hacer uso de las función de filtrado
+    if (!is_string($contenido) || !is_string($estado)) {
+        return false; 
+    }
 
-    // Crear el nuevo array para la tarea
-    $nueva_tarea = [
-        'id' => $id,
-        'descripcion' => $descripcion,
+    return [$ID, $contenido, $estado]; // Cambiado a devolver un array
+}
+
+//Guardar una tarea de forma simulada (se añade al array)
+
+function guardar_tarea($ID, $contenido, $estado) {
+    global $tareas;
+
+    // Validar los datos y obtener los valores filtrados
+    $validacion = texto_valido($ID, $contenido, $estado);
+    
+  
+
+    list($ID, $contenido, $estado) = $validacion; // Asignar valores devueltos
+
+    // Crear un array clave-valor 
+    $tareas[] = [
+        'ID' => $ID,
+        'contenido' => $contenido,
         'estado' => $estado
     ];
 
-    // Almacenar la nueva tarea en el array global
-    $tareas[] = $nueva_tarea;
-    
-    return true; // Si se guarda correctamente, devuelve true
+    return true; // Tarea guardada con éxito
 }
 
-// Función para filtrar contenido
-function filtrar_contenido($contenido) {
-    // Eliminar caracteres especiales y espacios duplicados
-    $contenido = trim($contenido); // Elimina espacios al principio y al final
-    $contenido = preg_replace('/\s+/', ' ', $contenido); // Reemplaza espacios en blanco duplicados
-    $contenido = htmlspecialchars($contenido); // Escapa caracteres especiales
-    return $contenido;
-}
-
-// Función para comprobar que un campo contiene información de texto válida
-function es_texto_valido($texto) {
-    $texto = filtrar_contenido($texto); // Filtrar el texto primero
-    // Comprobar si el texto no está vacío y tiene un mínimo de 1 carácter
-    return !empty($texto) && strlen($texto) >= 1;
-}
-
-// Función para mostrar todas las tareas
-
-    function mostrar() {
-        global $tareas;
-        return $tareas;
-    }
 
 
 

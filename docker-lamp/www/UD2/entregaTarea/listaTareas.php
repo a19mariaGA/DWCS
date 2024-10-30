@@ -20,17 +20,12 @@
         <tbody>
             <?php
                  include_once('utils.php');
+                
 
-                // Supongamos que la función mostrar() devuelve un array de tareas
-                $tareas = mostrar();
-
-                // Recorremos el array de tareas y mostramos cada una en una fila
-                foreach ($tareas as $tarea) {
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($tarea['titulo']) . "</td>";
-                    echo "<td>" . htmlspecialchars($tarea['contenido']) . "</td>";
-                    echo "<td>" . htmlspecialchars($tarea['estado']) . "</td>";
-                    echo "</tr>";
+                 if (empty($tareas)) {
+                    echo '<tr><td colspan="3">No existen tareas.</td></tr>';
+                } else {
+                    devolver_tareas();
                 }
             ?>
         </tbody>

@@ -32,8 +32,8 @@
 
             <div class="mb-3">
                 
-            <label for="titulo" class="form-label">Título de la tarea</label>
-            <input type="text" name="titulo" class="form-control" id="titulo" >
+            <label for="ID" class="form-label">ID</label>
+            <input type="text" name="ID" class="form-control" id="ID" >
             
             </div>
             
@@ -48,9 +48,9 @@
              
             <label for="estado" class="form-label">Estado</label>
              <select name="estado" id="estado" class="form-select" required>
-                    <option value="abierta">Abierta</option>
+                    <option value="abierta">Proceso</option>
                     <option value="pendiente">Pendiente</option>
-                    <option value="cerrada">Cerrada</option>
+                    <option value="cerrada">Completada</option>
             </select>
 
             </div>
