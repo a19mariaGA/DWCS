@@ -25,7 +25,12 @@
                  if (empty($tareas)) {
                     echo '<tr><td colspan="3">No existen tareas.</td></tr>';
                 } else {
-                    devolver_tareas();
+                    $tareas = devolver_tareas();
+                    echo "<tr>
+                            <td>{$tarea['ID']}</td>
+                            <td>{$tarea['contenido']}</td>
+                            <td>{$tarea['estado']}</td>                
+                        </tr>";
                 }
             ?>
         </tbody>
@@ -34,3 +39,4 @@
  
 </body>
 </html>
+
